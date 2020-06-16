@@ -1,12 +1,15 @@
 import os
 import time
 
-source = [r"C:\Users\Said\Documents"]  # TODO
+if os.sep == '\\':
+    source = [f'C:\\Users\\{os.getlogin()}\\Documents']
+else:
+    source = [f'/home/{os.getlogin()}/Documents']
 
 if os.sep == '\\':
     target_dir = 'E:\\Backup'
 else:
-    target_dir = '/home/Backup'
+    target_dir = f'/home/{os.getlogin()}/Backup'
 
 today = target_dir + os.sep + time.strftime('%d_%m_%Y')
 now = time.strftime('%H_%M_%S')
