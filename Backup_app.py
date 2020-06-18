@@ -1,10 +1,11 @@
 import os
 import time
+import zipfile
 
 if os.sep == '\\':
-    source = [f'C:\\Users\\{os.getlogin()}\\Documents']
+    source = f'C:\\Users\\{os.getlogin()}\\Documents'
 else:
-    source = [f'/home/{os.getlogin()}/Documents']
+    source = f'/home/{os.getlogin()}/Documents'
 
 if os.sep == '\\':
     target_dir = 'E:\\Backup'
@@ -14,22 +15,19 @@ else:
 today = target_dir + os.sep + time.strftime('%d_%m_%Y')
 now = time.strftime('%H_%M_%S')
 
-comment = input('Enter commentary: --> ')
+comment = input('Enter comment: --> ')
 if len(comment) == 0:
-    target = today + os.sep + now + '.zip'  # TODO
+    target = today + os.sep + now + '.zip'
 else:
     target = (today + os.sep + now + '_' +
-              comment.replace(' ', '_') + '.zip')  # TODO
+              comment.replace(' ', '_') + '.zip')
             
 # Make catalog if not exists.
 if not os.path.exists(today):
     os.makedirs(today)
-    print('The catalogue was successfully created')
+    print(f'The catalogue <<{today}>> was successfully created')
 
-zip_command = "zip -qr {0} {1}".format(target, ' '.join(source))
-
-# Run program and backup files.
-if os.system(zip_command) == 0:
-    print(f'The reserve copies successfully created in dir: {target}')
-else:
-    print('Backup failed')
+with zipfile.ZipFile(target, 'w') as zip_com:
+    for root, dirs, files in os.walk(source):
+        for file_n in files:
+            zip_com.write(os.path.join(root, file_n))
