@@ -3,29 +3,19 @@ import time
 import zipfile
 
 
-def src_for_win():
-    return f'C:\\Users\\{os.getlogin()}\\Documents'
-
-
-def src_for_unix():
-    return f'/home/{os.getlogin()}/Documents'
-
-
-def tar_dir_win():
-    return 'E:\\Backup'
-
-
-def tar_dir_unix():
-    return f'/home/{os.getlogin()}/Backup'
+win_docs_path = f'C:\\Users\\{os.getlogin()}\\Documents'
+unix_docs_path = f'/home/{os.getlogin()}/Documents'
+win_target_dir = 'E:\\Backup'
+unix_target_dir = f'/home/{os.getlogin()}/Backup'
 
 
 def main_func():
     if os.sep == '\\':
-        source = src_for_win()
-        target_dir = tar_dir_win()
+        source = win_docs_path
+        target_dir = win_target_dir
     else:
-        source = src_for_unix()
-        target_dir = tar_dir_unix()
+        source = unix_docs_path
+        target_dir = unix_target_dir
 
     today = target_dir + os.sep + time.strftime('%d_%m_%Y')
     now = time.strftime('%H_%M_%S')
