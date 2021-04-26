@@ -35,21 +35,16 @@ def copy_file_tree(orig_dir, copy_to):
     """
     pass
 
-def test_path(path_to_file, path_to_dir):
+def test_path(path_to_dir):
     """
-    Checking file and directry existence.
+    Checking directry existence.
     """
-    if os.path.exists(path_to_file):
-        test_file = True if os.path.isfile(path_to_file) else 'Enter path to a file'
-    else:
-        test_file = 'File does not exists. Enter correct path to file.'
-
     if os.path.exists(path_to_dir):
         test_dir = True if os.path.isdir(path_to_dir) else 'Enter path to a directory for storing parts of file.'
     else:
         test_dir = 'Directory does not exists. Enter correct path to a directory.'
     
-    return test_file, test_dir
+    return test_dir
 
 
 if __name__ == '__main__':
@@ -58,3 +53,10 @@ if __name__ == '__main__':
     else:
         path_to_dir = input('Enter path to the directory to copy')
         copy_to = input('Enter path to target directory')
+    test_path_to_dir = test_path(path_to_dir)
+    test_copy_to = test_path(copy_to)
+    if (test_path_to_dir is True) and (test_copy_to is True):
+        copy_file_tree(path_to_dir, copy_to)
+    else:
+        print(f'Test path to directory: {test_path_to_dir}')
+        print(f'Test target directory: {test_copy_to}')
