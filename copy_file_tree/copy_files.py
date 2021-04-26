@@ -23,21 +23,22 @@ def file_copy(path_to_file, copy_to, file_size=HUNDR_MB):
                     break
                 cp_file.write(read_f)
     else:
-        read_f = open(orig_file, 'rb').read()  # if file is small then read all at once.
+        read_f = open(path_to_file, 'rb').read()  # if file is small then read all at once.
         open(copy_to, 'wb').write(read_f)
                 
 
 
-def file_tree_cp(orig_dir, copy_to):
+def copy_file_tree(orig_dir, copy_to):
     """
-    Copy all dirs, subdirs and files in 'orig_dir'
+    Copy all dirs, subdirs and files from 'orig_dir'
     to 'copy_to' (path to empty dir).
     """
     pass
 
 def test_path(path_to_file, path_to_dir):
-    test_file = ''
-    test_dir = ''
+    """
+    Checking file and directry existence.
+    """
     if os.path.exists(path_to_file):
         test_file = True if os.path.isfile(path_to_file) else 'Enter path to a file'
     else:
@@ -49,3 +50,11 @@ def test_path(path_to_file, path_to_dir):
         test_dir = 'Directory does not exists. Enter correct path to a directory.'
     
     return test_file, test_dir
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 3:
+        path_to_dir, copy_to = sys.argv[1:]
+    else:
+        path_to_dir = input('Enter path to the directory to copy')
+        copy_to = input('Enter path to target directory')
