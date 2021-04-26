@@ -76,12 +76,13 @@ if __name__ == '__main__':
     if (test_path_to_dir is True) and (test_copy_to is True):
         base_name = os.path.basename(path_to_dir) + time.strftime('_%d_%m_%Y')
         copy_to = os.path.join(copy_to, base_name)
-        os.mkdir(copy_to)
+        try:
+            os.mkdir(copy_to)
+        except FileExistsError:
+            print(f'Folder {copy_to} is already exists')
+            input('Shutting down...')
+            os._exit(1)
         copy_file_tree(path_to_dir, copy_to)
     else:
         print(f'Test path to directory: {test_path_to_dir}')
         print(f'Test path to target directory: {test_copy_to}')
-
-## 
-# todo
-# FileExistsError
