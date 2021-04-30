@@ -17,7 +17,7 @@ def comparator(dir_1, dir_2):
     return not (unique_1 or unique_2)  # true if unique_1 and unique_2 is empty - no difference.
 
 def test_path(path_to_dir):
-    """Checking directry existence."""
+    """Checking directory existence."""
     if os.path.exists(path_to_dir):
         test_dir = True if os.path.isdir(path_to_dir) else False
     else:
