@@ -5,7 +5,7 @@ import os
 import sys
 
 def distinction(f_list_1, f_list_2):
-    "Return items that only in f_list_1"
+    "Return items that only in list of filenames in f_list_1"
     return [f for f in f_list_1 if f not in f_list_2]
 
 def comparator(dir_1, dir_2):
@@ -24,7 +24,7 @@ def test_path(path_to_dir):
         test_dir = False
     return test_dir
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv) == 3:
         dir_1, dir_2 = sys.argv[1:]
         test_path_1 = test_path(dir_1)
@@ -35,3 +35,6 @@ if __name__ == '__main__':
             print('Enter correct path')
     else:
         print('Usage: dist_files "path to folder 1" "path to folder 2"')
+
+if __name__ == '__main__':
+    main()
