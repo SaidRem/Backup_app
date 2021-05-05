@@ -55,7 +55,7 @@ def copy_file_tree(orig_dir, copy_to):
 
 def test_path(path_to_dir):
     """
-    Checking directry existence.
+    Checking directory existence.
     """
     if os.path.exists(path_to_dir):
         test_dir = True if os.path.isdir(path_to_dir) else 'Enter path to a directory for storing parts of file.'
