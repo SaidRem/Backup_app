@@ -3,19 +3,9 @@ import time
 import zipfile
 
 
-win_docs_path = f'C:\\Users\\{os.getlogin()}\\Documents'    # Path to the folder for Windows os for backup
-unix_docs_path = f'/home/{os.getlogin()}/Documents'         # Path to the folder for Unix os for backup
-win_target_dir = 'E:\\Backup'                               # Path to storage folder for Windows os
-unix_target_dir = f'/home/{os.getlogin()}/Backup'           # Path to storage folder for Unix os
-
-
 def main_func():
-    if os.sep == '\\':
-        source = win_docs_path
-        target_dir = win_target_dir
-    else:
-        source = unix_docs_path
-        target_dir = unix_target_dir
+    
+    source, target_dir = pathways()
 
     today = target_dir + os.sep + time.strftime('%d_%m_%Y')
     now = time.strftime('%H_%M_%S')
@@ -35,6 +25,18 @@ def main_func():
         for root, dirs, files in os.walk(source):
             for file_n in files:
                 zip_com.write(os.path.join(root, file_n))
+
+
+def pathways():
+    win_docs_path = f'C:\\Users\\{os.getlogin()}\\Documents'    # Path to the folder for Windows os for backup
+    unix_docs_path = f'/home/{os.getlogin()}/Documents'         # Path to the folder for Unix os for backup
+    win_target_dir = 'E:\\Backup'                               # Path to storage folder for Windows os
+    unix_target_dir = f'/home/{os.getlogin()}/Backup'           # Path to storage folder for Unix os
+
+    if os.sep == '\\':
+        return win_docs_path, win_target_dir
+    else:
+        return unix_docs_path, unix_target_dir
 
 
 if __name__ == '__main__':
