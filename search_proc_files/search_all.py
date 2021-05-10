@@ -1,3 +1,5 @@
+
+
 import os
 import sys
 from pathlib import Path
@@ -5,6 +7,9 @@ from pathlib import Path
 extensions = ['.py', '.pyw', '.txt']
 
 def searcher(start_dir, search_word):
+    """
+    Search 'search_word' in files in 'start_dir'.
+    """
     start_dir = Path(start_dir)
     if not start_dir.is_dir():
         return 'Enter correct path to a directory.'
@@ -16,6 +21,9 @@ def searcher(start_dir, search_word):
     return 'Search finished.'
 
 def check_file(full_path, search_word):
+    """
+    Reads and searches for 'search_word' in file ('full_path').
+    """
     try:
         if Path(full_path).suffix not in extensions:
             print(f'Skipped => {full_path}')
