@@ -25,6 +25,9 @@ def test_path(path_to_dir):
     return test_dir
 
 def main():
+    """
+    Checks the arguments, path for validity and runs.
+    """
     if len(sys.argv) == 3:
         dir_1, dir_2 = sys.argv[1:]
         test_path_1 = test_path(dir_1)
