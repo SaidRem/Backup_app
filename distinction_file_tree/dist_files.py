@@ -9,7 +9,11 @@ def distinction(f_list_1, f_list_2):
     return [f for f in f_list_1 if f not in f_list_2]
 
 def comparator(dir_1, dir_2):
-    "Compares two directory contents."
+    """
+    Compares two directory contents.
+    Returns empty list if no difference found.
+    If differs found returns list of differ files.
+    """
     f_list_1 = os.listdir(dir_1)
     f_list_2 = os.listdir(dir_2)
     unique_1 = distinction(f_list_1, f_list_2)
@@ -17,7 +21,9 @@ def comparator(dir_1, dir_2):
     return not (unique_1 or unique_2)  # true if unique_1 and unique_2 is empty - no difference.
 
 def test_path(path_to_dir):
-    """Checking directory existence."""
+    """
+    Checking directory existence.
+    """
     if os.path.exists(path_to_dir):
         test_dir = True if os.path.isdir(path_to_dir) else False
     else:
