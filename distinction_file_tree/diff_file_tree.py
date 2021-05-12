@@ -1,5 +1,6 @@
 """
-Directory tree comparison
+Directory file tree comparison (recursively).
+Usage: diff_file_tree.py "path_to_directory_1" "path_to_directory_2"
 """
 
 import sys
