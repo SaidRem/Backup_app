@@ -1,4 +1,5 @@
-# Compare two directories to find files that exists in one but not the other.
+# Usage: dist_files.py "path to directory 1" "path to directory 2"
+# Compare two directories to find files that exists in one but not in other.
 # Compares only filenames, not file contents.
 
 import os
