@@ -20,7 +20,7 @@ class FileTraveler:
     def run(self, start_dir=os.curdir):
         self.reset()                     # Reset files and dirs counters for reuse run method.
         for cur_dir, sub_dirs, files_list in os.walk(start_dir):
-            self.visitdir(cur_dir)
+            self.visit_dir(cur_dir)
             for f in files_list:
                 full_path = Path(cur_dir).joinpath(f)
                 self.visit_file(full_path)
@@ -28,7 +28,7 @@ class FileTraveler:
     def reset(self):
         self.files_cnt = self.dirs_cnt = 0
     
-    def visitdir(self, cur_dir):
+    def visit_dir(self, cur_dir):
         self.dirs_cnt += 1
         if self.trace > 0:
             print(f'Current directory: {cur_dir}')
@@ -40,6 +40,11 @@ class FileTraveler:
 
 
 if __name__ == '__main__':
-    obj = FileTraveler()
-
-
+    if len(sys.argv) < 2 or not Path(sys.argv[1]).exists():
+        print('Usage: searcher.py [path to dir]')
+    else:
+        obj = FileTraveler()
+        obj.run('E:')
+        print('-'*100)
+        print(f'\nTotal:\ndirs => {obj.dirs_cnt}')
+        print(f'files => {obj.files_cnt}')
