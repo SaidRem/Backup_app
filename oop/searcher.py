@@ -38,6 +38,23 @@ class FileTraveler:
         if self.trace > 1:
             print(f'......{Path(full_path).name}')
 
+class SearchInFiles(FileTraveler):
+    ext = ['.py', '.txt', '.pyw']
+
+    def __init__(self, search_word, trace=1):
+        FileTraveler.__init__(self, trace)
+        self.files_readed = 0
+        self.search_word = search_word
+    
+    def visit_file(self, full_path):
+        "Read file and check if search word in."
+        pass
+
+    def check_file(self):
+        "Check if file extention in ext list."
+        pass
+
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 2 or not Path(sys.argv[1]).exists():
