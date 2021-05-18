@@ -39,7 +39,7 @@ class FileTraveler:
             print(f'......{Path(full_path).name}')
 
 class SearchInFiles(FileTraveler):
-    ext = ['.py', '.txt', '.pyw']
+    extentions = ['.py', '.txt', '.pyw']
 
     def __init__(self, search_word, trace=1):
         FileTraveler.__init__(self, trace)
@@ -48,10 +48,20 @@ class SearchInFiles(FileTraveler):
     
     def visit_file(self, full_path):
         "Read file and check if search word in."
-        pass
+        if self.check_file(full_path):
+            text = open(full_path).read()
+            if self.search_word in text:
+                self.word_matched(full_path)
 
-    def check_file(self):
-        "Check if file extention in ext list."
+    def check_file(self, full_path):
+        "Check if file extentions in ext list."
+        if Path(full_path).suffix in self.extentions:
+            return True
+        else:
+            return False
+    
+    def word_matched(self, full_path):
+        "Print message about matched file"
         pass
 
 
