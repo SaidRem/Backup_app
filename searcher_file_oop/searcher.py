@@ -39,7 +39,7 @@ class FileTraveler:
             print(f'......{Path(full_path).name}')
 
 class SearchInFiles(FileTraveler):
-    extentions = ['.py', '.txt', '.pyw']
+    extentions = ['.py', '.pyw', '.txt']
 
     def __init__(self, search_word, trace=1):
         FileTraveler.__init__(self, trace)
@@ -59,8 +59,16 @@ class SearchInFiles(FileTraveler):
     
     def word_matched(self, full_path):
         "Print message about matched file"
-        pass
+        print(f'{full_path} has the word => {self.search_word}')
 
+class EditMatched(SearchInFiles):
+    """
+    Edit matched files.
+    """
+    edit = r'F:\Soft_for_Progs\Notepad++\notepad++.exe'
+
+    def word_matched(self, full_path):
+        os.system(f'{self.edit} {full_path}')
 
 
 if __name__ == '__main__':
