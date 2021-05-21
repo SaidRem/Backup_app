@@ -55,10 +55,7 @@ class SearchInFiles(FileTraveler):
 
     def check_file(self, full_path):
         "Check if file extentions in ext list."
-        if Path(full_path).suffix in self.extentions:
-            return True
-        else:
-            return False
+        return Path(full_path).suffix
     
     def word_matched(self, full_path):
         "Print message about matched file"
