@@ -51,13 +51,13 @@ class SearchInFiles(FileTraveler):
         if self.check_file(full_path):
             text = open(full_path).read()
             if self.search_word in text:
-                self.word_matched(full_path)
+                self.word_matched(full_path, text)
 
     def check_file(self, full_path):
         "Check if file extentions in ext list."
         return Path(full_path).suffix
     
-    def word_matched(self, full_path):
+    def word_matched(self, full_path, text):
         "Print message about matched file"
         print(f'{full_path} has the word => {self.search_word}')
 
