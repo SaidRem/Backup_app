@@ -49,9 +49,12 @@ class SearchInFiles(FileTraveler):
     def visit_file(self, full_path):
         "Read file and check if search word in."
         if self.check_file(full_path):
-            text = open(full_path).read()
-            if self.search_word in text:
-                self.word_matched(full_path, text)
+            try:
+                text = open(full_path).read()
+                if self.search_word in text:
+                    self.word_matched(full_path, text)
+            except UnicodeDecodeError:
+                pass
 
     def check_file(self, full_path):
         "Check if file extentions in ext list."

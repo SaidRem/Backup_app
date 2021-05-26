@@ -30,3 +30,16 @@ class SearchReplace(SearchInFiles):
             open(full_path, 'w').write(text)
             print(f"Word => {old_str}\nReplaced by => {new_str}\nIn File: {full_path}")
             print('-' * 100)
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 4:
+        replace_word = input('Replace in files? (y/n)')
+        only_print = True if replace_word == 'n' else False
+        obj = SearchReplace(sys.argv[1], sys.argv[2], only_print=only_print)
+        obj.run(start_dir=sys.argv[3])
+    
+    if only_print:
+        print('-'*100)
+        for f in obj.for_replace:
+            print(f)
