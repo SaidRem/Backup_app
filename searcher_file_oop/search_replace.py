@@ -1,5 +1,7 @@
 """
 Search and replace in all files in a directory tree.
+
+Usage: search_replace.py [search word] [replacement word] [start dir]
 """
 
 import sys
