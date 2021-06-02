@@ -18,6 +18,10 @@ class LinesInFiles(FileTraveler):
         
     
     def visitsource(self, full_path, ext):
+        """
+        Count lines in a file and save results in
+        self.exts_dict.
+        """
         if self.trace > 0:
             print(Path(full_path).name)
         lines = len(open(full_path, 'rb').readlines())
@@ -27,6 +31,10 @@ class LinesInFiles(FileTraveler):
         self.exts_dict[ext]['lines'] += lines
     
     def visit_file(self, full_path):
+        """
+        Check file ext and send the file path to
+        visitsource() for counting lines.
+        """
         FileTraveler.visit_file(self, full_path)
         for ext in self.list_exts:
             if str(full_path).endswith(ext):
@@ -34,12 +42,12 @@ class LinesInFiles(FileTraveler):
 
 
 if __name__ == '__main__':
-    py_exts = ['.py', '.pyw']
+    py_exts = ['.py', '.pyw']  # For count lines only in python files.
     obj = LinesInFiles(list_exts=py_exts)
     obj.run('D:\\')
     print(f'Visited {obj.files_cnt} files and {obj.dirs_cnt} dirs')
     print('-' * 100)
-    print('Source files => {obj.src_files}, lines {obj.src_lines}')
+    print(f'Source files => {obj.src_files}, lines {obj.src_lines}')
     print('-' * 100)
     pprint.pprint(obj.exts_dict)
 
