@@ -1,3 +1,7 @@
+# Copy a directory tree.
+# Usage: copy_files.py [<the path to the folder to copy>] [<the path to the storage folder>]
+# Otherwise enter to command line prompt.
+
 import os
 import sys
 import time
@@ -69,8 +73,8 @@ if __name__ == '__main__':
     if len(sys.argv) == 3:
         path_to_dir, copy_to = sys.argv[1:]
     else:
-        path_to_dir = input('Enter path to the directory to copy => ')
-        copy_to = input('Enter path to target directory => ')
+        path_to_dir = input('Enter the path to the folder to copy => ')
+        copy_to = input('Enter the path to the storage folder => ')
     test_path_to_dir = test_path(path_to_dir)
     test_copy_to = test_path(copy_to)
     if (test_path_to_dir is True) and (test_copy_to is True):

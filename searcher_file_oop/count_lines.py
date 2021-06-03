@@ -50,4 +50,5 @@ if __name__ == '__main__':
     print(f'Source files => {obj.src_files}, lines {obj.src_lines}')
     print('-' * 100)
     pprint.pprint(obj.exts_dict)
+    input()
 
