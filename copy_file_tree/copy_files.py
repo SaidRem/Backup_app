@@ -10,13 +10,13 @@ ONE_MB = 2**20  # 1 Mb
 HUNDR_MB = ONE_MB * 100  # 100 Mb 
 
 
-def file_copy(path_to_file, copy_to, file_size=HUNDR_MB):
+def copy_file(path_to_file, copy_to, file_size=HUNDR_MB):
     """
     Copy a file from 'path_to_file' (path) to new directory 'copy_to' (path).
-    path_to_file = 'path_to_directory\\file_name'
-    copy_to = 'path_to_directory\\new_file_name'
+    :path_to_file = 'path_to_directory\\file_name'
+    :copy_to = 'path_to_directory\\new_file_name'
     """
-    if os.path.getsize(path_to_file) > HUNDR_MB:  # if file large then read in small chunks (100 Mb).
+    if os.path.getsize(path_to_file) > HUNDR_MB:  # if True then read in small chunks (100 Mb).
         with open(orig_file, 'rb') as orig_file, \
              open(copy_to, 'wb') as cp_file:
             while True:
@@ -41,7 +41,7 @@ def copy_file_tree(orig_dir, copy_to):
         path_copy_to = os.path.join(copy_to, filename)
         if not os.path.isdir(path_from):
             try:
-                file_copy(path_from, path_copy_to)
+                copy_file(path_from, path_copy_to)
                 file_count += 1
             except:
                 print(f'Error copying {path_from} to {path_copy_to} --skipped')
