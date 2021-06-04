@@ -7,7 +7,9 @@ from searcher import FileTraveler
 from ..copy_file_tree.copy_files import copy_file
 
 class CopyFileTree(FileTraveler):
-    "Copy file tree."
+    """
+    Copy file tree.
+    """
     
     def __init__(self, orig_dir, copy_dir, trace=1):
         self.orig_dir_len = len(orig_dir) + 1
@@ -22,6 +24,10 @@ class CopyFileTree(FileTraveler):
         self.dirs_cnt += 1
     
     def visit_file(self, file_path):
+        """
+        Copy file using function copy_file() from
+        ../copy_file_tree/copy_files.py
+        """
         to_path = os.path.join(self.copy_dir, file_path[self.orig_dir_len:])
         if self.trace:
             print('f', file_path, '=>', to_path)
