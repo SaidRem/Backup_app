@@ -2,7 +2,8 @@
 Copying file tree using classes.
 """
 
-from pathlib import os
+import os
+from pathlib import Path
 from searcher import FileTraveler
 from ..copy_file_tree.copy_files import copy_file
 
