@@ -1,5 +1,7 @@
 """
-Copying file tree using classes.
+Copying file tree.
+
+Usage: copy_all.py [path to copy folder] [path to dir for storage]
 """
 
 import os
